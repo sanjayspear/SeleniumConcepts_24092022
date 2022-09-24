@@ -1,0 +1,31 @@
+================================Log4J===================================
+
+   Q What is log?
+   
+   -> Capturing info or activities at the time of program execution.
+   
+   Q Types of logs?
+   
+   -> 1. info
+      2. warn
+      3. error
+      4. fatal
+      
+   Q How to generate logs?
+   
+   -> By using Apache Log4J api.
+   
+   Q How it works?
+   
+   -> It reads log4j configuration from log4j.properties file.
+   
+   Q. Where to create log4j.properties file?
+   -> Create inside the resources source folder. i.e. => src/main/resources
+   
+   then create file named log4j.properties
+   
+   Note: Let suppose your script is running in a remote machine and every time we can't go and login to remote machine to check program 
+         status. Instead we can use logs. Logs are very much useful in terms of debugging codes. To check any exceptions, null pointer
+         exception or any kind of exceptions are occurring and what is the route cause / file is missing / jar is missing easily we track
+         it from log.
+      

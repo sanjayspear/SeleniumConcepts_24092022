@@ -1,0 +1,22 @@
+JavscriptExecutor:
+
+     => JavaScriptExecutor is an interface which provides mechanism to execute java-script  through selenium driver.
+     
+     You can perform the following using the Java-script Executor:
+     
+         1. Flashing an element.
+         2. Drawing the border around the element.
+         3. Capture title of the page.
+         4. Click in some element (Disabled / hidden elements).
+         5. Generate alert info.
+         6. Refreshing page.
+         7. Scrolling page.
+         
+         
+      Note:1 Create some java generic methods and implement the above specified actions / logic through Java-Script Executor.
+      
+      Note:2 Basically all the java script methods implicitly execute java-script.
+      
+      Note:3. Sometime elements are not clickable though locator is valid (Reasons: Elements are disabled / hidden) 
+      
+      

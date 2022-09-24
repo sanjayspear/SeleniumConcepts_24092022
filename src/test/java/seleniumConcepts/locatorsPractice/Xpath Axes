@@ -1,0 +1,16 @@
+Xpath  Axes are used to search for multiple nodes in the XML document from the current node context. These nodes are mainly used  when the web element is not 
+identified with the help of id, name, className, linkText, partialLinkText, TagName, CSSSelector.
+
+//a[contains(text(), 'LGB Forge Ltd.')]/parent::td/following-sibling::td
+
+//a[contains(text(), 'LGB Forge Ltd.')]/ancestor::tr/descendant ::td
+
+//a[contains(text(), 'LGB Forge Ltd.')]/ancestor::tr//td[3]
+
+//a[contains(text(), 'LGB Forge Ltd.')]/ancestor::tr/child::td
+
+/ => Immediate child to parent or ancestor
+
+// => Any child
+
+//a[contains(text(), 'LGB Forge Ltd.')]/ancestor::tr

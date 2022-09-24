@@ -1,0 +1,93 @@
+1. NoSuchElementException:
+
+      > Reasons:
+           1. Sync Issues: Selenium web-driver try to find an element but element still not rendered.There is a tile lag causes exception
+                           to occur.
+           2. Incorrect Locators
+           3. Element is in IFrame
+           4. Some time we use By.id instead of By.xpath
+           5. type mistake (xapth but, it supposed to be xpath)
+           
+ 2. ElementNotInteractableException:
+ 
+      >Reasons:
+      
+      1. Element is present in the DOM but it is not visible in the view port area of the browser. If that happen, then selenium usually throw
+      ElementNotVisibleException. It will not throw ElementNotInteractable Exception.
+      
+      2. Element is present behind another element. It means one element is overlapping another element. It can happen sometime, but most
+         of the time it will throw ElementNotClickableException.
+         
+      3. //form[@name='email'] ==> Not valid :
+         //h4[@name='email'] ==> Not valid :
+      
+      driver.findElement(By.xpath("//form[@name='email']").click(); ==> It doesn't throw any error because, slenium can click any
+                                                                        element on the webpage
+                                                                        
+      driver.findElement(By.xpath("//form[@name='email']").sendKeys("abc@gamil.com"); => Throws exception, because selenium cannot perform
+                                                                                         send action on form.
+                                                                                         
+      Note: Though, both form & input tag associate same attribute and values, that is developer mistake. However, you don't make that mistake.
+            You use //input tag instead of //form tag. Because, w.k.t selenium cannot perform send action on form. Otherwise, you will
+            get the ElementNotInteractableException.
+            
+            Here, selenium is able to locate element but not able to interact. Because it is the //form or //h4 tag.
+            //h4 or //form tag cannot accept any input.
+      
+         //input[@name='login'] ==> Valid:
+         
+          driver.findElement(By.id("search")); ==> Sometime, selenium throw exception. Because, id=search is present in both //form and //input
+                                                    tag. Here, selenium first identifies //form tag instead of //input tag. Because, //input
+                                                    tag is the child of form tag. W.k,t //form tag cannot accept any input.
+                                                    
+                    solution use xpath along with the //input tag => /input[@id='search'] => Valid
+                    
+                    
+        Note: Other reason, element is present. But, developer used class with some hidden value. In this case as well we get 
+              the ElementNotInteractableException.
+              
+3. StaleElementReferenceException:
+
+		We get this exception when page / specific component of the web page is refreshed. When script is on action and if it detects page refresh
+		then selenium will throw the StaleElementReferenceException. Because, element is stale and no longer fresh. In that case if you try to
+		locate same element in the developer console, still you could able to locate element and you get confused i am able to locate why am i getting
+		this exception then. Reason, is xpath / locator is valid but, id got changed. In HTML DOM each and very element is identified with an unique
+		id and in any case if page got refreshed then id will get changed. But, our selenium is trying to identify element using old id. So,
+		we get StaleElementReferenceException.
+		
+		Solution:
+		
+		Re-identify same element in the catch blocl and perform the same action again.
+
+4.ElementClickInterceptedException:
+
+		ElementClickInterceptedException might have occurred when you are trying to click an element, the element could be a button, 
+		radio button or checkbox, or just a click operation.
+
+5. ElementClickInterceptedException occurs when the target element that you want to click is overlaid by some other element in the web page.
+
+		For example, when you have an element below the dropdown/ Submenu; then you might have faced this kind of error. Sometimes some model pop-ups
+		also can cause this kind of overlay on the element, so when you try to click such kind of element then you will receive 
+		an element not clickable exception. Because, dropdown values are overlaying on the button that you want perform click action.
+		
+		Sometime, you are trying to perform some action on some element but, suddenly you get one window popup and overlap the element.
+		Here, element is present on the html DOM but, that element click got intercepted by some randomly generated pop-up.So, 
+		in that case we get the ElementClickInterceptedException.
+
+6. ElementNotClickableAtPointException:
+
+We know that now a days developers are making use of Ajax components and though website looks like completely loaded but, some of the
+components are still loading. As per developers, end users need not to wait complete page to load instead end users can start making
+use of web site immediately. problem is, let suppose you want to click on the login button. But, another element is still loading and 
+overlapping on the existing login button and in that case if you are script perform action on the button then we get the
+ElementNotClickableAtPointException.
+
+Solution: Use the explicit wait and for the element to get invisible. w.k.t, We can use explicit wait with the condition
+w.until(ExpectedConditions.
+      invisibilityOfElementLocated(By.xpath("//*[@class='mui-btn']")));
+      
+then ==> click on the desired button.
+
+
+      
+      
